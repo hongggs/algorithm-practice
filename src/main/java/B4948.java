@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class R4948 {
+public class B4948 {
     static boolean[] arr = new boolean[246913]; // 0부터 시작하므로 2n + 1
 
     public static void main(String[] args) throws IOException {
