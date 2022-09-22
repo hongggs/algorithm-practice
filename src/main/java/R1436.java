@@ -9,10 +9,10 @@ public class R1436 {
         int cnt = 1;
         int result = 666;
         while(cnt < n) {
+            result++;
             if(String.valueOf(result).contains("666")) {
                 cnt++;
             }
-            result++;
         }
         System.out.print(result);
     }
