@@ -77,7 +77,7 @@ public class B6087 {
             for(int i = 0; i < 4; i++) {
                 int nr = p.r + dr[i];
                 int nc = p.c + dc[i];
-                int nextSum = (p.d == i) ? p.d : p.d + 1;
+                int nextSum = (p.d == i) ? p.sum : p.sum + 1;
                 if (isValid(nr, nc) && Math.abs(p.d - i) != 2) {
                     if (visited[i][nr][nc] > nextSum) {
                         q.offer(new Point(nr, nc, i, nextSum));
