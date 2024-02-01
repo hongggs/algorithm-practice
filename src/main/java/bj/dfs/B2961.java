@@ -1,4 +1,4 @@
-package bj;
+package bj.dfs;
 
 import java.util.*;
 import java.io.*;
