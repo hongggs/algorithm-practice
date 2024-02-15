@@ -12,9 +12,9 @@ class B1012 {
   static int[] dr = {-1, 1, 0, 0}; //상하좌우
   static int[] dc = {0, 0, -1, 1};
   public static void main(String[] args) throws IOException{
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    StringBuilder sb = new StringBuilder();
-    T = Integer.parseInt(br.readLine());
+      BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+      StringBuilder sb = new StringBuilder();
+      T = Integer.parseInt(br.readLine());
 
     StringTokenizer st;
     for(int i = 1; i <= T; i++) {
