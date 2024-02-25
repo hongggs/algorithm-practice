@@ -1,23 +1,12 @@
 package samsung;
 
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
-/**
- * <문제>
- * 두께(행) D, 가로(열) W인 보호 필름이 있다.
- * 해당 보호 필름 성늠 검사를 하려고 한다.
- * 보호필름 각 셀에는 A, B 특성이 있다.
- * 모든 세로방향으로 탐색을 했을때 동일 특성의 셀들이 K개 이상 연속적으로 있는 경우에만 성능 검사 통과가 가능하다.
- * 성능검사를 통과하기 위해서 특정 행에 약품을 투입할 수 있다.
- * A약품을 투입하면, 해당 셀 특성이 모두 A로 변경되고 B약품을 투입하면, 해당 셀 특성이 모두 B로 변경된다.
- * 문제는 성능검사를 통과히기 위한 최소 약품 투입 횟수를 구하는 것이다!
-
- * 1. 성능검사
- * 2-1. 성능 검사 통과하면, 최솟값 검증
- * 2-2. 성능 검사 통과 못하면, 약품 투입
- */
-public class Solution_모의_2112_보호필름_손홍서 {
+//https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV5-BEE6AK0DFAVl&categoryId=AV5-BEE6AK0DFAVl&categoryType=CODE&problemTitle=%EB%AA%A8%EC%9D%98&orderBy=FIRST_REG_DATETIME&selectCodeLang=ALL&select-1=&pageSize=30&pageIndex=1&&&&&&&&&
+public class Solution_모의_2383_점심식사시간_손홍서 {
     static int ans;
     static int[][] map;
     static int D, W, K;

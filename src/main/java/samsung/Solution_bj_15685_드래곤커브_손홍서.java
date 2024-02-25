@@ -16,7 +16,7 @@ import java.io.*;
  * 2. 드래곤 커브 그리기
  * 3. 정사각형 개수 세기
  */
-public class B15685 {
+public class Solution_bj_15685_드래곤커브_손홍서 {
     static final int[] dr = {0, -1, 0, 1}; //우상좌하
     static final int[] dc = {1, 0, -1, 0};
     static boolean[][] map;
