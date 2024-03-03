@@ -3,7 +3,7 @@ package samsung;
 import java.util.*;
 import java.io.*;
 
-public class B14890 {
+public class Solution_bj_14890_경사로_서울_20반_손홍서 {
     static int N, L;
     static int[][] map;
     static boolean[][] visit;

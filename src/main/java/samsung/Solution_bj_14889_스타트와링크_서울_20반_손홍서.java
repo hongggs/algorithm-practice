@@ -3,7 +3,7 @@ package samsung;
 import java.util.*;
 import java.io.*;
 
-public class B14889 {
+public class Solution_bj_14889_스타트와링크_서울_20반_손홍서 {
 
     static int N;
     static int[][] map;
