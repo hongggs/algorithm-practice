@@ -18,6 +18,9 @@ import java.io.*;
  * 2-2. 성능 검사 통과 못하면, 약품 투입
  */
 public class Solution_모의_2112_보호필름_손홍서 {
+
+    static int[] fillA;
+    static int[] fillB;
     static int ans;
     static int[][] map;
     static int D, W, K;
@@ -47,6 +50,10 @@ public class Solution_모의_2112_보호필름_손홍서 {
              * K를 ans에 대입시킨 후 이 값보다 약품 투입 횟수가 크면 탐색을 종료하게 함
              */
             ans = K;
+            fillA = new int[W];
+            fillB = new int[W];
+            Arrays.fill(fillA, 0);
+            Arrays.fill(fillB, 1);
             solution(0, 0);
             sb.append(ans).append("\n");
         }
@@ -70,21 +77,19 @@ public class Solution_모의_2112_보호필름_손홍서 {
         }
 
         //2-2. 성능 검사 통과 못하면, 약품 투입
-        int[] temp = Arrays.copyOf(map[cnt], W);
-        Arrays.fill(map[cnt], 0);
+        int[] backup = Arrays.copyOf(map[cnt], W);
+        map[cnt] = fillA;
         solution(cnt + 1, curr + 1);
-        Arrays.fill(map[cnt], 1);
+        map[cnt] = fillB;
         solution(cnt + 1, curr + 1);
-        map[cnt] = Arrays.copyOf(temp, W);
+        map[cnt] = backup;
         solution(cnt + 1, curr);
     }
 
 
     static boolean isValid() {
-        boolean flag;
         int old, cnt;
         for(int i = 0; i < W; i++) {
-            flag = false;
             old = map[0][i];
             cnt = 1;
             for(int j = 1; j < D; j++) {
@@ -97,12 +102,11 @@ public class Solution_모의_2112_보호필름_손홍서 {
                 }
                 //만약 K개를 충족하면 해당 열은 더이상 탐색할 필요없으므로 중단
                 if(cnt == K) {
-                    flag = true;
                     break;
                 }
             }
             //만약 한 열을 탐색하면서 flag가 변경되지 않으면 성능검사 통과 못한것이므로 false 리턴
-            if(!flag) {
+            if(cnt < K) {
                 return false;
             }
         }
