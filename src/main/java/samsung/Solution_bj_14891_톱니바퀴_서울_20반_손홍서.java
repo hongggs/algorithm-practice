@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Solution_bj_14891_톱니바퀴_서울_20반_손홍서 {
     static int[][] arr;
-    static int ans;
+    static int[] order;
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -24,8 +24,27 @@ public class Solution_bj_14891_톱니바퀴_서울_20반_손홍서 {
         }
 
         int m = Integer.parseInt(br.readLine());
-        ans = 0;
-        int[] order = new int[4];
+        while (m-- > 0) {
+            st = new StringTokenizer(br.readLine());
+            int k = Integer.parseInt(st.nextToken());
+            int d = Integer.parseInt(st.nextToken());
+
+            order = new int[4];
+            order[k - 1] = d;
+            checkOrder(k);
+            for(int j = 0; j < 4; j++) {
+                move(j + 1, order[j]);
+            }
+        }
+
+        int ans = 0;
+        for(int i = 1; i <= 4; i++) {
+            if(arr[i][1] == 1) {
+                ans += Math.pow(2, (i - 1));
+            }
+        }
+        System.out.println(ans);
+        /*
         for(int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
             int k = Integer.parseInt(st.nextToken());
@@ -87,14 +106,26 @@ public class Solution_bj_14891_톱니바퀴_서울_20반_손홍서 {
                 move(j + 1, order[j]);
             }
 
+            */
 
-        }
-        for(int i = 1; i <= 4; i++) {
-            if(arr[i][1] == 1) {
-                ans += Math.pow(2, (i - 1));
+    }
+
+    static void checkOrder(int k) {
+        //좌측 톱니
+        for(int i = k - 1; i >= 1; i--) {
+            if (arr[i][3] != arr[i + 1][7]) {
+
+                order[i - 1] = -order[i + 1 - 1];
+            } else {
+                break; //회전이 한 번 하지 않게되면 다음 톱니도 회전하지 않음
             }
         }
-        System.out.println(ans);
+        //우측 톱니
+        for(int i = k + 1; i <= 4; i++) {
+            if (arr[i][7] != arr[i - 1][3]) {
+                order[i - 1] = -order[i - 1 - 1];
+            }
+        }
     }
 
     static void move(int r, int d) {
