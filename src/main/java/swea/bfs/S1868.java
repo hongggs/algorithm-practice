@@ -11,7 +11,7 @@ public class S1868 {
     static int[][] map;
     static boolean[][] visit;
     public static void main(String[] args) throws Exception{
-        System.setIn(new FileInputStream("res/input_d4_1868.txt"));
+//        System.setIn(new FileInputStream("res/input_d4_1868.txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
 
