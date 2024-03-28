@@ -1,4 +1,4 @@
-package bj.dijkstra;
+package bj.shortestway.dijkstra;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
