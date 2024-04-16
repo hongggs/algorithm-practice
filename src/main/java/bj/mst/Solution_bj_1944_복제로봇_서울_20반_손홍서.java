@@ -3,18 +3,28 @@ package bj.mst;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/**
+ * 문제:
+ * 획기적인 로봇이 있다.
+ * 자기 자신을 똑같은 로봇으로 원하는 개수만큼 복제시킬 수 있다.
+ * 단, 열쇠가 있는 곳들과 로봇이 출발하는 위치에서 로봇이 복제 가능하다.
+ * 최단 경로로 흩어진 열쇠들을 "모두" 찾는 것! -> 최단 경로로 모든 S와 K들이 이어져야 한다
+ * => MST 문제
+ *
+ * 1. 로봇은 S와 K에서 복제 가능함 따라서 모든 S - K1 ... Km ,  K1 - K2 ... Km, K2 - Km .... 간의 이동거리가 구하기
+ * 2. 1번 데이터를 바탕으로 최단경로 구하기
+ */
 public class Solution_bj_1944_복제로봇_서울_20반_손홍서 {
 
     static final int[] dr = {-1, 1, 0, 0};
     static final int[] dc = {0, 0, -1, 1};
     static int N, M;
     static int[][] map;
-    static int[][] keys;
+    static int[][] keys; // 모든 Key 입력 0번은 Start를 의미
     static int[] parent;
     static PriorityQueue<Link> pq;
     static class Link implements Comparable<Link>{
@@ -35,11 +45,13 @@ public class Solution_bj_1944_복제로봇_서울_20반_손홍서 {
         }
     }
     public static void main(String[] args) throws Exception{
+        // 0. 입력
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        int index = 1;
+        N = Integer.parseInt(st.nextToken()); //미로크기
+        M = Integer.parseInt(st.nextToken()); //열쇠개수
+
+        int index = 1; //0번은 start이므로 1번부터 index 설정
         keys = new int[M + 1][2];
         parent = new int[M + 1];
         map = new int[N][N];
@@ -61,10 +73,13 @@ public class Solution_bj_1944_복제로봇_서울_20반_손홍서 {
             }
         }
         pq = new PriorityQueue<>();
+        // 1. 모든 S - K1 ... Km ,  K1 - K2 ... Km, K2 - Km .... 간의 이동거리가 구하기
         for(int i = 0; i <= M; i++) {
             getDist(i);
         }
+
         initParent();
+        // 2. 최단경로 구하기
         System.out.println(solution());
     }
 
@@ -74,6 +89,7 @@ public class Solution_bj_1944_복제로봇_서울_20반_손홍서 {
         while(!pq.isEmpty()) {
             Link now = pq.poll();
 
+            // 가장 짧은 간선인데 부모가 같지 않으면 연결해줌
             if (find(now.s) != find(now.e)) {
                 union(now.s, now.e);
                 ans += now.w;
@@ -110,7 +126,7 @@ public class Solution_bj_1944_복제로봇_서울_20반_손홍서 {
         }
     }
 
-    static void getDist(int key) {
+    static void getDist(int key) { //bfs
         boolean[][] v = new boolean[N][N];
         Queue<int[]> q = new ArrayDeque<>();
         v[keys[key][0]][keys[key][1]] = true;
@@ -123,6 +139,7 @@ public class Solution_bj_1944_복제로봇_서울_20반_손홍서 {
                 int nc = now[1] + dc[i];
                 if(0 <= nr && nr < N && 0 <= nc && nc < N && !v[nr][nc] && map[nr][nc] != 1) {
                     if(map[nr][nc] != 0) {
+                        //도착한 곳이 key나 start 지점이면 Link(간선)으로 판단하고 pq에 저장해주기
                         for(int j = 0; j <= M; j++) {
                             if(keys[j][0] == nr && keys[j][1] == nc) {
                                 pq.offer(new Link(key, j, now[2] + 1));
