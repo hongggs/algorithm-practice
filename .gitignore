@@ -145,3 +145,11 @@ replay_pid*
 
 src/main/java/Solution.java
 src/main/java/Main.java
+
+.gradle
+build
+gradle
+build.gradle
+gradlew
+gradlew.bat
+settings.gradle
